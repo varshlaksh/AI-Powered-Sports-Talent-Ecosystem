@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 
-const mongoURI = 'mongodb://localhost:27017/campusDB'; 
+
+const mongoURI = process.env.MONGO_DB_KEY;
 
 const connectDB = async () => {
   try {

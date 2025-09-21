@@ -1,11 +1,26 @@
-# AI-Powered Sports Talent Ecosystem
+<div align="center">
 
-SportsTalent AI is a **web application** built with **Node.js, Express, MongoDB, and EJS**, designed to help athletes **track and analyze their performance**.  
-It includes **authentication, performance tracking**, and **AI-powered analysis** via the Gemini API.
+# Genignite Pre-Hackathon Submission Template 
+
+<img src="assets/logo/f58664d6c437.jpg" alt="Genignite Pre-Hackathon Logo"/>
+
+<br/>
 
 ---
 
-## 🚀 Features
+ GenIgnite Pre-Hackathon IPEC
+
+</div>
+
+## 1. Problem Statement Name
+
+AI-Powered Sports Talent Ecosystem
+
+## 2. Problem Statement Description
+
+India's sports talent ecosystem faces challenges like fragmented access, lack of standardized assessments, and limited coaching, especially in rural and marginalized areas. Socio-economic and gender barriers restrict participation, and families face uncertainty about support. There's a pressing need for an AI-powered, mobile-first platform to democratize talent discovery, enable scientific performance tracking, and foster inclusive, data-driven development, unlocking new opportunities in sports management and analytics.
+
+## 3. Project Overview
 
 - 🔑 **User Signup & Login** (with role & sport selection)  
 - 🛡 **Secure Password Hashing** (bcrypt)  
@@ -14,19 +29,7 @@ It includes **authentication, performance tracking**, and **AI-powered analysis*
 - 🤖 **AI-powered performance analysis** using Gemini API  
 - 🖥 **Dashboard** with User Profile & Performance Insights  
 
----
-
-## 🛠 Tech Stack
-
-- **Frontend:** EJS + CSS  
-- **Backend:** Node.js + Express  
-- **Database:** MongoDB + Mongoose  
-- **Authentication:** express-session  
-- **AI Integration:** Gemini API  
-
----
-
-## 📂 Project Structure
+## 4. Architecture
 
 sports-talent-ai/
 │── app.js # Main server file
@@ -50,84 +53,58 @@ sports-talent-ai/
 └── README.md # Project documentation
 
 
+## 5. Tech Stack
+
+- **Frontend:** EJS + CSS  
+- **Backend:** Node.js + Express  
+- **Database:** MongoDB + Mongoose  
+- **Authentication:** express-session  
+- **AI Integration:** Gemini API 
+
 ---
 
-## ⚡ Installation
+## 6. Team Name
 
-1. **Clone the repo**
+Bitwise Warriors
+
+## 7. Team Members & Details
+
+| Name                | Role                | Email                       | LinkedIn                        | College Name                   |
+|---------------------|---------------------|-----------------------------|---------------------------------|--------------------------------|
+| Lakshya Varshney    | Team Lead , AI/ML   |varshneylakshya642@gmail.com |https://www.linkedin.com/in/lakshya-varshney-183b70179/ | BIT, Mrt |
+| Daksh Saini         | Backend Dev         |dakshsaini2525@gmail.com     |https://www.linkedin.com/in/lakshya-varshney-183b70179/ | BIT, Mrt |
+| Mohit               | Frontend Dev        |mohit901282@gmail.com        |https://www.linkedin.com/in/lakshya-varshney-183b70179/ | BIT, Mrt |
+| Tarang chauhan      | Database            |ctarangchauahn@gmail.com     |https://www.linkedin.com/in/lakshya-varshney-183b70179/ | BIT, Mrt |
+| Chhavi Nagar        | UI/UX               |chhavinagar06@gmail.com      |https://www.linkedin.com/in/lakshya-varshney-183b70179/ | BIT, Mrt |
+
+---
+
+## 8. Additional Links
+
+- [Project Demo/Video]
+  ((https://drive.google.com/file/d/1meQsXO3j8i-xxrf1FNcWGd2cMRLl_TUq/view?usp=sharing))
+
+---[Reference 1]
+  (India.gov.in / Youth & Sports)
+  (Open Government Data (India))- “Department of Sports” section on Data.gov.in.
+
+- [Deployed App]
+  ()
+
+---
+
+## 9. Instructions 
+
+ --*Clone the repo**
 ```bash
 git clone https://github.com/varshlaksh/AI-Powered-Sports-Talent-Ecosystem.git
 
+---Install dependencies
 
-Install dependencies
+"npm install"
 
-npm install
+--Start the server
 
+"node app.js"
 
-Start the server
-
-node app.js
-
-📋 Usage
-
-Signup
-
-Choose your role: Athlete or Coach
-
-Select your sport
-
-Login
-
-Access your account with secure credentials
-
-Enter Performance Data
-
-Fill in metrics: Height, Weight, Speed, Stamina, Accuracy
-
-AI Analysis
-
-Gemini API generates strengths, weaknesses, and improvement tips
-
-Dashboard
-
-View all saved performance data
-
-Access AI insights and track progress over time
-
-✅ Future Improvements
-
-📈 Graphical Performance Dashboard – Visualize athlete metrics over time
-
-🏅 Leaderboard for Athletes – Compare performance with peers
-
-📱 Mobile-friendly UI – Responsive design for all devices
-
-🔗 Google OAuth Login – Simplified authentication with Google accounts
-
-🤝 Contributing
-
-Contributions are welcome! Feel free to fork the repository, create branches, and submit pull requests.
-
-📄 License
-
-This project is licensed under the MIT License.
-
-
----
-
-You can now:  
-
-1. Save this as **`README.md`** in your project root.  
-2. Stage and commit it:
-
-```bash
-git add README.md
-git commit -m "Add professional README"
-git push
-
-
-✅ After that, your GitHub repo will have a professional README.
-
-If you want, I can also create a version with placeholders for screenshots or GIFs so it looks even more visually appealing on GitHub.
-
-Do you want me to do that?
+##**Team HackWithIndia x Devnovate**
