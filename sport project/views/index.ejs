@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - SportsTalent AI</title>
+    <style>
+      /* === CSS VARIABLES === */
+      :root {
+        --primary: #667eea;
+        --primary-dark: #5a67d8;
+        --secondary: #764ba2;
+        --accent: #4caf50;
+        --accent-dark: #45a049;
+        --text: #333;
+        --text-light: #666;
+        --background: #f5f7fa;
+        --white: #ffffff;
+        --gray-light: #e1e5e9;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+        --radius: 12px;
+      }
+
+      /* === BASE STYLES === */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--background);
+        min-height: 100vh;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+      }
+
+      .btn-secondary:hover {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      .card {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--text);
+      }
+
+      /* === NAVIGATION === */
+      .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--primary);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text);
+      }
+
+      /* === HOME PAGE STYLES === */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        color: var(--white);
+        padding: 4rem 0;
+      }
+
+      .hero-content {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero-image {
+        text-align: center;
+      }
+
+      .placeholder-image {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius);
+        padding: 2rem;
+        display: inline-block;
+      }
+
+      .placeholder-image span {
+        font-size: 4rem;
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .centered {
+        text-align: center;
+      }
+
+      .features {
+        padding: 4rem 0;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .feature-card {
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 1.5rem;
+      }
+
+      .how-it-works {
+        background: var(--background);
+        padding: 4rem 0;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .step {
+        text-align: center;
+        padding: 1.5rem;
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 auto 1rem;
+      }
+
+      .testimonials {
+        padding: 4rem 0;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .testimonial {
+        padding: 2rem;
+      }
+
+      .testimonial-content {
+        margin-bottom: 1.5rem;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .testimonial-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .cta {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        color: var(--white);
+        padding: 4rem 0;
+        text-align: center;
+      }
+
+      .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .cta p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h3,
+      .footer-section h4 {
+        margin-bottom: 1rem;
+        color: var(--white);
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: var(--white);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #555;
+        padding-top: 1rem;
+        text-align: center;
+        color: #ccc;
+      }
+
+      footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 2rem;
+      }
+
+      /* Responsive Design for Home Page */
+      @media (min-width: 640px) {
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .steps {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .testimonial-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-content {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 768px) {
+        .hero .container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: center;
+          gap: 2rem;
+        }
+
+        .hero-content {
+          text-align: left;
+          margin-bottom: 0;
+        }
+
+        .hero-buttons {
+          justify-content: flex-start;
+        }
+
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .steps {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .testimonial-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .footer-content {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .nav-links {
+          display: flex;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .hero h1 {
+          font-size: 3.5rem;
+        }
+
+        .features-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (max-width: 767px) {
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--white);
+          flex-direction: column;
+          padding: 1rem;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-content">
+          <a href="index.html" class="logo">🏆 SportsTalent AI</a>
+          <button class="mobile-menu-btn">☰</button>
+          <ul class="nav-links">
+            <li><a href="/users" class="active">Home</a></li>
+            <li><a href="/users/dashboad">Dashboard</a></li>
+            <li><a href="/users/upload">Upload</a></li>
+            <li><a href="/users/leaderboad">Leaderboard</a></li>
+            <li><a href="/users/profile">Profile</a></li>
+
+            <!-- Login/Logout Button -->
+            <% if (user) { %>
+            <li><a href="/users/logout">Logout</a></li>
+            <% } else { %>
+            <li><a href="/users/login">Login</a></li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>AI-Powered Sports Talent Ecosystem</h1>
+          <p>
+            Discover, develop, and showcase your athletic potential with
+            cutting-edge AI analysis. Upload your performance videos and get
+            instant feedback from our advanced algorithms.
+          </p>
+          <div class="hero-buttons">
+            <a href="/users/signup" class="btn btn-primary">Get Started</a>
+            <a href="#features" class="btn btn-secondary">Learn More</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="placeholder-image">
+            <span>🏀</span>
+            <p>AI Sports Analysis</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+      <div class="container">
+        <h2 class="section-title centered">Why Choose SportsTalent AI?</h2>
+        <div class="features-grid">
+          <article class="feature-card card">
+            <div class="feature-icon">🎥</div>
+            <h3>Video Analysis</h3>
+            <p>
+              Upload your training videos and get detailed AI-powered analysis
+              of your technique, speed, and performance metrics.
+            </p>
+          </article>
+          <article class="feature-card card">
+            <div class="feature-icon">📊</div>
+            <h3>Performance Tracking</h3>
+            <p>
+              Monitor your progress over time with comprehensive analytics and
+              personalized improvement recommendations.
+            </p>
+          </article>
+          <article class="feature-card card">
+            <div class="feature-icon">🏅</div>
+            <h3>Gamification</h3>
+            <p>
+              Earn badges, compete on leaderboards, and complete challenges to
+              stay motivated and engaged.
+            </p>
+          </article>
+          <article class="feature-card card">
+            <div class="feature-icon">👥</div>
+            <h3>Talent Discovery</h3>
+            <p>
+              Get noticed by scouts and coaches who use our platform to discover
+              promising athletic talent.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+      <div class="container">
+        <h2 class="section-title centered">How It Works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Record & Upload</h3>
+            <p>
+              Record your training sessions or games and upload the videos to
+              our secure platform.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>AI Analysis</h3>
+            <p>
+              Our advanced algorithms analyze your technique, movement, and
+              performance metrics.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Get Insights</h3>
+            <p>
+              Receive detailed feedback, scores, and personalized
+              recommendations for improvement.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Track Progress</h3>
+            <p>
+              Monitor your development over time and compare your performance
+              with other athletes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="section-title centered">What Athletes Say</h2>
+        <div class="testimonial-grid">
+          <div class="testimonial card">
+            <div class="testimonial-content">
+              <p>
+                "SportsTalent AI helped me identify flaws in my shooting
+                technique that my coach had missed. My accuracy improved by 22%
+                in just 3 months!"
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">SC</div>
+              <div class="testimonial-info">
+                <h4>Stephen Curry</h4>
+                <p>Basketball Player</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial card">
+            <div class="testimonial-content">
+              <p>
+                "The detailed performance metrics and progress tracking kept me
+                motivated during my rehabilitation. I came back stronger than
+                ever!"
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">AM</div>
+              <div class="testimonial-info">
+                <h4>Alex Morgan</h4>
+                <p>Soccer Player</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial card">
+            <div class="testimonial-content">
+              <p>
+                "As a coach, SportsTalent AI has revolutionized how I train my
+                athletes. The data-driven insights help me create personalized
+                training programs."
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">GP</div>
+              <div class="testimonial-info">
+                <h4>Greg Popovich</h4>
+                <p>Basketball Coach</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready to Elevate Your Game?</h2>
+          <p>
+            Join thousands of athletes already using SportsTalent AI to unlock
+            their full potential.
+          </p>
+          <a href="/users/dashboad" class="btn btn-primary">Get Started Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>SportsTalent AI</h3>
+            <p>
+              Empowering athletes with cutting-edge AI technology to analyze,
+              improve, and showcase their skills.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="/users">Home</a></li>
+              <li><a href="dashboard.html">Dashboard</a></li>
+              <li><a href="upload.html">Upload</a></li>
+              <li><a href="leaderboard.html">Leaderboard</a></li>
+              <li><a href="profile.html">Profile</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Tutorials</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Contact Us</h4>
+            <ul>
+              <li>Email: support@sportstalent.ai</li>
+              <li>Phone: (555) 123-4567</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 AI-Powered Sports Talent Ecosystem. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Simple mobile menu toggle
+      document
+        .querySelector(".mobile-menu-btn")
+        .addEventListener("click", function () {
+          const navLinks = document.querySelector(".nav-links");
+          navLinks.classList.toggle("active");
+        });
+    </script>
+  </body>
+</html>

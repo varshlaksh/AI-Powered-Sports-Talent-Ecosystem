@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - Sports Performance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .results-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .results-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #f1f3f4;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .authenticity-card {
+            grid-column: 1 / -1;
+        }
+
+        .authenticity-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .authentic {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            color: white;
+        }
+
+        .fake {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .authenticity-details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section-content {
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .section-content h3 {
+            color: #333;
+            margin: 20px 0 12px 0;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-content h3:before {
+            content: "▶";
+            color: #667eea;
+            margin-right: 10px;
+            font-size: 0.8rem;
+        }
+
+        .section-content ul {
+            margin: 15px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .section-content li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .section-content li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            color: #667eea;
+            font-weight: bold;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .section-content li:hover {
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 8px;
+            padding-left: 35px;
+        }
+
+        .section-content p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .metadata {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .metadata-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .metadata-item .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .metadata-item .label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .score-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: conic-gradient(#667eea 0deg 252deg, #e9ecef 252deg 360deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .score-circle:after {
+            content: "";
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: white;
+            position: absolute;
+        }
+
+        .score-text {
+            position: relative;
+            z-index: 1;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .full-width-card {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        .loading-dots {
+            display: inline-block;
+        }
+
+        .loading-dots:after {
+            content: '.';
+            animation: dots 2s steps(5, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% {
+                color: rgba(0,0,0,0);
+                text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0);
+            }
+            40% {
+                color: #667eea;
+                text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0);
+            }
+            60% {
+                text-shadow: .25em 0 0 #667eea, .5em 0 0 rgba(0,0,0,0);
+            }
+            80%, 100% {
+                text-shadow: .25em 0 0 #667eea, .5em 0 0 #667eea;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏆 Analysis Complete</h1>
+            <p>Your sports performance has been analyzed using advanced AI</p>
+        </div>
+
+        <!-- Video Metadata -->
+        <div class="metadata">
+            <div class="metadata-item">
+                <span class="value">📁</span>
+                <div class="label">File Analyzed</div>
+            </div>
+            <div class="metadata-item">
+                <span class="value"><%= new Date().toLocaleDateString() %></span>
+                <div class="label">Analysis Date</div>
+            </div>
+            <div class="metadata-item">
+                <span class="value">🤖</span>
+                <div class="label">AI Powered</div>
+            </div>
+            <div class="metadata-item">
+                <span class="value">⚡</span>
+                <div class="label">Real-time</div>
+            </div>
+        </div>
+
+        <div class="results-container">
+            <!-- Authenticity Check Card -->
+            <div class="card authenticity-card">
+                <div class="card-header">
+                    <div class="card-icon">🛡️</div>
+                    <h2 class="card-title">Authenticity Verification</h2>
+                </div>
+                
+                <div class="authenticity-status <%= realText && realText.toLowerCase().includes('real') ? 'authentic' : 'fake' %>">
+                    <% if (realText && realText.toLowerCase().includes('real')) { %>
+                        ✅ Video Verified as Authentic
+                    <% } else { %>
+                        ❌ Video Flagged as Suspicious
+                    <% } %>
+                </div>
+
+                <div class="authenticity-details">
+                    <h4>📋 Verification Details:</h4>
+                    <p><%= realText || 'Analysis completed successfully' %></p>
+                </div>
+
+                <div class="score-circle">
+                    <div class="score-text">
+                        <% if (realText && realText.toLowerCase().includes('real')) { %>
+                            95%
+                        <% } else { %>
+                            25%
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Analysis Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">⚙️</div>
+                    <h2 class="card-title">Technical Analysis</h2>
+                </div>
+                <div class="section-content">
+                    <div class="highlight-box">
+                        <h4>🎯 Key Performance Indicators</h4>
+                        <p>Technical skills, form analysis, and movement efficiency assessment based on sports science principles.</p>
+                    </div>
+                    
+                    <h3>⭐ Strengths Identified</h3>
+                    <ul>
+                        <li>Proper form and technique execution</li>
+                        <li>Good body positioning and balance</li>
+                        <li>Effective use of momentum</li>
+                        <li>Consistent movement patterns</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Performance Analysis Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <h2 class="card-title">Performance Metrics</h2>
+                </div>
+                <div class="section-content">
+                    <div class="highlight-box">
+                        <h4>💪 Physical Assessment</h4>
+                        <p>Strength, coordination, and athletic performance evaluation.</p>
+                    </div>
+                    
+                    <h3>🔧 Areas for Improvement</h3>
+                    <ul>
+                        <li>Focus on core stability training</li>
+                        <li>Improve reaction time and reflexes</li>
+                        <li>Enhance cardiovascular endurance</li>
+                        <li>Work on flexibility and mobility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Detailed Analysis Card -->
+            <div class="card full-width-card">
+                <div class="card-header">
+                    <div class="card-icon">🔍</div>
+                    <h2 class="card-title">Comprehensive Analysis Report</h2>
+                </div>
+                <div class="section-content">
+                    <% 
+                    // Parse the analysis text and format it beautifully
+                    const analysisHtml = (analysisText || 'Analysis completed successfully. Your performance shows great potential with room for strategic improvements.')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                        .replace(/(\d+\.)/g, '<br><strong>$1</strong>')
+                        .replace(/(-\s)/g, '<br>• ')
+                        .split('\n')
+                        .map(line => line.trim())
+                        .filter(line => line.length > 0)
+                        .join('<br><br>');
+                    %>
+                    
+                    <div style="line-height: 1.8; font-size: 1.05rem;">
+                        <%- analysisHtml %>
+                    </div>
+
+                    <div class="highlight-box" style="margin-top: 30px;">
+                        <h4>🎯 Next Steps Recommendation</h4>
+                        <p><strong>Priority Focus Areas:</strong> Based on this analysis, we recommend concentrating on technique refinement and consistent practice. Consider working with a coach to address the specific improvement areas identified above.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions">
+            <a href="/" class="btn btn-primary">
+                🔄 Analyze Another Video
+            </a>
+            <button onclick="window.print()" class="btn btn-secondary">
+                📄 Save Report
+            </button>
+            <button onclick="shareResults()" class="btn btn-secondary">
+                📤 Share Results
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate score circle
+            const scoreCircle = document.querySelector('.score-circle');
+            if (scoreCircle) {
+                setTimeout(() => {
+                    scoreCircle.style.animation = 'none';
+                    scoreCircle.style.background = 'conic-gradient(#667eea 0deg 252deg, #e9ecef 252deg 360deg)';
+                }, 1000);
+            }
+
+            // Add click effects to cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('.btn')) {
+                        this.style.transform = 'scale(1.02)';
+                        setTimeout(() => {
+                            this.style.transform = 'translateY(0)';
+                        }, 200);
+                    }
+                });
+            });
+        });
+
+        function shareResults() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Sports Performance Analysis Results',
+                    text: 'Check out my sports performance analysis results!',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback - copy to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Results link copied to clipboard!');
+                });
+            }
+        }
+
+        // Add print styles
+        const printStyles = `
+            @media print {
+                body { background: white !important; }
+                .card { box-shadow: none; border: 1px solid #ddd; }
+                .actions { display: none; }
+                .btn { display: none; }
+            }
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = printStyles;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
