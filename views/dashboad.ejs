@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - SportsTalent AI</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-content">
+          <a href="users/dashboard" class="logo">🏆 SportsTalent AI</a>
+          <button class="mobile-menu-btn">☰</button>
+          <ul class="nav-links">
+            <li><a href="/users">Home</a></li>
+            <li><a href="/users/dashboad" class="active">Dashboard</a></li>
+            <li><a href="/users/upload">Upload</a></li>
+            <li><a href="/users/leaderboad">Leaderboard</a></li>
+            <li><a href="/users/profile">Profile</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+      <div class="container">
+        <h1>Athlete Dashboard</h1>
+        <p>
+          Welcome back, Michael! Track your progress and improve your
+          performance.
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="dashboard-content">
+        <!-- Main Content Column -->
+        <main>
+          <!-- Profile Section -->
+          <section class="card">
+            <h2 class="section-title">Profile Overview</h2>
+            <div class="profile-section">
+              <div class="profile-avatar">MJ</div>
+              <div class="profile-info">
+                <h3>Michael Jordan</h3>
+                <div class="profile-stats">
+                  <span class="stat-item">Age: 22</span>
+                  <span class="stat-item">Sport: Basketball</span>
+                  <span class="stat-item">Location: Chicago, IL</span>
+                  <span class="stat-item">Level: Elite</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Performance Metrics -->
+          <section class="card">
+            <h2 class="section-title">Performance Metrics</h2>
+            <div class="metrics-grid">
+              <article class="metric-card">
+                <div class="metric-value">28.5</div>
+                <div class="metric-label">Speed (mph)</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-85"></div>
+                </div>
+              </article>
+              <article class="metric-card">
+                <div class="metric-value">42"</div>
+                <div class="metric-label">Jump Height</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-92"></div>
+                </div>
+              </article>
+              <article class="metric-card">
+                <div class="metric-value">185</div>
+                <div class="metric-label">Strength Score</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-78"></div>
+                </div>
+              </article>
+              <article class="metric-card">
+                <div class="metric-value">92%</div>
+                <div class="metric-label">Endurance</div>
+                <div class="progress-bar">
+                  <div class="progress-fill progress-88"></div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Performance History -->
+          <section class="card">
+            <h2 class="section-title">Recent Uploads</h2>
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Video Title</th>
+                  <th>Score</th>
+                  <th>Feedback</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Sept 18, 2025</td>
+                  <td>Free Throw Practice</td>
+                  <td><span class="score-badge">94/100</span></td>
+                  <td>Excellent form consistency</td>
+                </tr>
+                <tr>
+                  <td>Sept 15, 2025</td>
+                  <td>Defensive Drills</td>
+                  <td><span class="score-badge">87/100</span></td>
+                  <td>Improve lateral movement</td>
+                </tr>
+                <tr>
+                  <td>Sept 12, 2025</td>
+                  <td>Shooting Practice</td>
+                  <td><span class="score-badge">91/100</span></td>
+                  <td>Great arc trajectory</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </main>
+
+        <!-- Sidebar -->
+        <aside>
+          <!-- Badges & Achievements -->
+          <section class="card">
+            <h2 class="section-title">Achievements</h2>
+            <div class="badges-grid">
+              <div class="badge-item earned">
+                <div class="badge-icon">🏀</div>
+                <div class="badge-name">First Upload</div>
+              </div>
+              <div class="badge-item earned">
+                <div class="badge-icon">🎯</div>
+                <div class="badge-name">Sharpshooter</div>
+              </div>
+              <div class="badge-item earned">
+                <div class="badge-icon">⚡</div>
+                <div class="badge-name">Speed Demon</div>
+              </div>
+              <div class="badge-item">
+                <div class="badge-icon">👑</div>
+                <div class="badge-name">MVP</div>
+              </div>
+              <div class="badge-item">
+                <div class="badge-icon">🔥</div>
+                <div class="badge-name">Hot Streak</div>
+              </div>
+              <div class="badge-item">
+                <div class="badge-icon">💪</div>
+                <div class="badge-name">Strength Master</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Challenges -->
+          <section class="card">
+            <h2 class="section-title">Active Challenges</h2>
+            <div class="challenges-grid">
+              <article class="challenge-card card">
+                <div class="challenge-progress">
+                  <div class="challenge-progress-fill" style="width: 60%"></div>
+                </div>
+                <h4 class="challenge-title">Weekly Upload Goal</h4>
+                <p class="challenge-description">
+                  Upload 5 training videos this week. Progress: 3/5
+                </p>
+                <span class="challenge-reward">🏆 +200 XP</span>
+              </article>
+
+              <article class="challenge-card card">
+                <div class="challenge-progress">
+                  <div class="challenge-progress-fill" style="width: 25%"></div>
+                </div>
+                <h4 class="challenge-title">Perfect Form</h4>
+                <p class="challenge-description">
+                  Achieve 95+ technique score in 4 consecutive uploads.
+                  Progress: 1/4
+                </p>
+                <span class="challenge-reward">🎯 +500 XP</span>
+              </article>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2025 AI-Powered Sports Talent Ecosystem. All rights reserved.
+        </p>
+        <p>Empowering athletes with cutting-edge AI technology.</p>
+      </div>
+    </footer>
+  </body>
+</html>

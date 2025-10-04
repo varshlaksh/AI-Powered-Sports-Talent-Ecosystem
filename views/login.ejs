@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SportsTalent AI</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-card">
+            <h2 class="signup-title">Login</h2>
+            <p class="signup-subtitle">Enter your credentials to access your account</p>
+
+            <% if (errors && errors.length > 0) { %>
+                <ul style="color:red; margin-bottom: 1rem;">
+                    <% errors.forEach(function(error) { %>
+                        <li><%= error.msg %></li>
+                    <% }); %>
+                </ul>
+            <% } %>
+
+            <form action="/users/login" method="POST">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+
+            <div class="login-link">
+                Don't have an account? <a href="/users/signup">Sign up</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
